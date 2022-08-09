@@ -1,0 +1,27 @@
+{
+  "name": "portfolio",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Caleb Cox's portfolio",
+  "homepage": "https://github.com/canac/portfolio#readme",
+  "bugs": {
+    "url": "https://github.com/canac/portfolio/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canac/portfolio.git"
+  },
+  "license": "MIT",
+  "author": "Caleb Cox <canac@users.noreply.github.com>",
+  "scripts": {
+    "build": "parcel build src/index.html",
+    "dev": "parcel src/index.html",
+    "prettier": "prettier --write ."
+  },
+  "devDependencies": {
+    "parcel": "^2.7.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "tailwindcss": "^3.1.8"
+  }
+}
