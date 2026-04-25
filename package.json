@@ -19,7 +19,7 @@
     "prettier": "prettier --write ."
   },
   "devDependencies": {
-    "parcel": "^2.7.0",
+    "parcel": "^2.16.4",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "tailwindcss": "^3.1.8"
