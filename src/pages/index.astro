@@ -1,0 +1,237 @@
+---
+import OssContribution from "../components/OssContribution.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionLabel from "../components/SectionLabel.astro";
+import Sidebar from "../components/Sidebar.astro";
+import { profile } from "../data/profile";
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title={`${profile.fullName} | ${profile.title}`}
+  description={`${profile.fullName} — ${profile.title}. Portfolio and professional experience.`}
+>
+  <Sidebar slot="sidebar" />
+
+  <section class="section" id="about">
+    <SectionLabel label="About" />
+    <p class="prose">
+      Senior full-stack software engineer specializing in TypeScript, React,
+      Node.js, and Ruby on Rails. I enjoy turning complex problems into simple,
+      maintainable solutions, improving developer experience through better
+      tooling and workflows, and building products that are intuitive for users
+      and easy for teams to evolve. I&rsquo;m passionate about deeply
+      understanding the technologies I use, including their design decisions,
+      tradeoffs, and underlying principles, and sharing that knowledge to help
+      other engineers grow.
+    </p>
+  </section>
+
+  <section class="section" id="projects">
+    <SectionLabel
+      label="Featured Projects"
+      sub="A few of my favorite personal projects and developer tools I've built for myself."
+    />
+    <div class="cards">
+      <ProjectCard
+        name="Budgeteer"
+        tag="Budgeting App"
+        href="https://github.com/canac/budgeteer"
+        tech={[
+          "TypeScript",
+          "Node.js",
+          "TanStack Start & Router",
+          "React",
+          "Mantine",
+          "PostgreSQL",
+          "Prisma",
+        ]}
+      >
+        A zero-based budgeting web app inspired by EveryDollar. It automatically
+        imports transactions via Plaid, reconciles pending transactions after
+        they post, and provides detailed spending analytics and visualizations.
+      </ProjectCard>
+      <ProjectCard
+        name="portman"
+        tag="Port Manager / Reverse Proxy"
+        href="https://github.com/canac/portman"
+        tech={["Rust", "Caddy"]}
+      >
+        A CLI that assigns each project or worktree a unique port, injects {" "}
+        <code>$PORT</code>{" "}
+        into the environment, and reverse proxies applications into memorable URLs
+        like <code>https://app.localhost</code>.
+      </ProjectCard>
+      <ProjectCard
+        name="chron"
+        tag="Declarative Cron CLI"
+        href="https://github.com/canac/chron"
+        tech={["Rust", "IPC"]}
+      >
+        A declarative alternative to crontab. Define cron jobs in a
+        live-reloaded TOML file with commands, schedules, and retry policies,
+        then monitor and manage them through a CLI and HTTP dashboard.
+      </ProjectCard>
+      <ProjectCard
+        name="ross"
+        tag="Deno RSS Server"
+        href="https://github.com/canac/ross"
+        tech={["Deno", "TypeScript", "Hono"]}
+      >
+        A Deno server that generates RSS feeds for websites that don't publish
+        one, including feeds built from scraped HTML via CSS selectors and
+        semver-aware release feeds for npm packages.
+      </ProjectCard>
+      <ProjectCard
+        name="git-cleanup"
+        tag="Git Worktree Cleanup CLI"
+        href="https://github.com/canac/git-cleanup"
+        tech={["Deno", "TypeScript"]}
+      >
+        An interactive CLI that safely cleans up merged git worktrees and
+        branches, making long-lived worktree workflows easier to manage.
+      </ProjectCard>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <SectionLabel label="Professional Experience" />
+    <p class="prose prose--exp">
+      During my time at Cru I've worked across the stack to modernize legacy
+      systems, optimize existing applications, and build features used by
+      thousands of staff and donors around the world. I've helped teams ship
+      reliable software by establishing technical standards, mentoring other
+      developers, and introducing AI-assisted workflows that accelerate delivery
+      without sacrificing quality.
+    </p>
+    <div class="highlights">
+      <div class="highlight">
+        <span class="tick">&mdash;</span>
+        Led architecture and delivery for cross-functional initiatives, designing
+        scalable solutions, collaborating across teams, and guiding projects from
+        technical planning through production release.
+      </div>
+      <div class="highlight">
+        <span class="tick">&mdash;</span>
+        Migrated a custom authentication system to Okta for a donation platform processing
+        $75M annually, seamlessly transitioning 380,000 users with no production incidents.
+      </div>
+      <div class="highlight">
+        <span class="tick">&mdash;</span>
+        Modernized a large donor CRM by migrating from AngularJS to React, while improving
+        Ruby on Rails GraphQL API performance by 25% and reducing JavaScript bundle
+        sizes by 40%.
+      </div>
+      <div class="highlight">
+        <span class="tick">&mdash;</span>
+        Established AI-assisted development workflows across the team, helping engineers
+        use LLMs effectively for implementation, debugging, architectural exploration,
+        and refactoring.
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="open-source">
+    <SectionLabel
+      label="Open Source"
+      sub="A few contributions to open source projects that I'm most proud of."
+    />
+    <div class="oss">
+      <OssContribution
+        name="Deno SQLite"
+        href="https://github.com/dyedgreen/deno-sqlite/pull/259"
+      >
+        Updated the deno-sqlite library for compatibility with Deno 2, adapting
+        it to runtime API changes introduced in the major release.
+      </OssContribution>
+      <OssContribution
+        name="Starship"
+        href="https://github.com/starship/starship/pull/6502"
+      >
+        Added JSR package manager support to Starship, allowing the prompt to
+        detect and display project package versions alongside other JavaScript
+        ecosystems.
+      </OssContribution>
+      <OssContribution
+        name="Raycast"
+        href="https://github.com/raycast/extensions/pull/6867"
+      >
+        Designed and built the Git Worktrees extension for the Raycast Store,
+        bringing common Git worktree workflows into Raycast for faster
+        repository management.
+      </OssContribution>
+      <OssContribution
+        name="TanStack Router"
+        href="https://github.com/TanStack/router/pull/5583"
+      >
+        Added support for asynchronous serverFn validation, enabling more
+        flexible server-side validation workflows in TanStack Router.
+      </OssContribution>
+    </div>
+  </section>
+
+  <div class="footer">
+    &copy; {profile.fullName}{" "}
+    {new Date().getFullYear()}
+  </div>
+</Base>
+
+<style>
+  .section {
+    scroll-margin-top: var(--space-12);
+  }
+
+  .prose {
+    font-size: var(--fs-lg);
+    line-height: var(--lh-loose);
+    margin: 0;
+    color: var(--text-2);
+    text-wrap: pretty;
+  }
+
+  .prose--exp {
+    font-size: var(--fs-lg);
+    line-height: var(--lh-loose);
+    margin-bottom: var(--space-5);
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .highlights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .highlight {
+    display: flex;
+    gap: var(--space-3);
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+    color: var(--text-3);
+
+    .tick {
+      color: var(--accent);
+    }
+  }
+
+  .oss {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer {
+    font-size: var(--fs-sm);
+    color: var(--footer);
+  }
+
+  @media (max-width: 820px) {
+    .highlights {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

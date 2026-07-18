@@ -1,0 +1,139 @@
+---
+interface Props {
+  company: string;
+  title: string;
+  start: string;
+  end: string;
+  bullets: string[];
+}
+
+const { company, title, start, end, bullets } = Astro.props;
+---
+
+<div class="entry">
+  <p class="org">{company}</p>
+  <p class="entry-sub">
+    <span class="role">{title}</span>
+    <span class="dates">{start} &ndash; {end}</span>
+  </p>
+  {
+    bullets.length > 0 && (
+      <ul>
+        {bullets.map((bullet) => (
+          <li>{bullet}</li>
+        ))}
+      </ul>
+    )
+  }
+</div>
+
+<style>
+  /* ---- screen: dark resume page, title-first with em-dash bullets ---- */
+  @media screen {
+    .entry {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .entry-sub {
+      order: 1;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-4);
+    }
+
+    .role {
+      font-family: var(--font-display);
+      font-size: var(--fs-xl);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .dates {
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      color: var(--muted-2);
+      flex: none;
+    }
+
+    .org {
+      order: 2;
+      margin: 0 0 var(--space-3);
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    ul {
+      order: 3;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    li {
+      display: flex;
+      gap: var(--space-3);
+      font-size: var(--fs-base);
+      line-height: var(--lh-base);
+      color: var(--text-3);
+    }
+
+    li::before {
+      content: "\2014";
+      color: var(--accent);
+      flex: none;
+    }
+  }
+
+  /* ---- print: company-first black-on-white document ---- */
+  @media print {
+    .org {
+      margin: 0;
+      font-weight: 600;
+      font-size: 12pt;
+      color: var(--print-ink);
+    }
+
+    .entry-sub {
+      margin: var(--space-1) 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-1) var(--space-4);
+    }
+
+    .role {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 12pt;
+      color: var(--print-ink);
+    }
+
+    .dates {
+      color: var(--print-muted);
+      font-size: 10pt;
+      white-space: nowrap;
+      flex: none;
+    }
+
+    ul {
+      margin: 4pt 0 0;
+      padding-left: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: 3pt;
+    }
+
+    li {
+      color: var(--print-body);
+      font-size: 10pt;
+      line-height: 1.1;
+    }
+  }
+</style>

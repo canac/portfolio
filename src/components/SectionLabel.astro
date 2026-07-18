@@ -1,0 +1,40 @@
+---
+interface Props {
+  label: string;
+  sub?: string;
+}
+
+const { label, sub } = Astro.props;
+---
+
+<div class:list={["label-block", { "label-block--sub": sub }]}>
+  <div class="label">{label}</div>
+  {sub && <div class="section-sub">{sub}</div>}
+</div>
+
+<style>
+  .label-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Sub blurb gets a touch more breathing room before the section content. */
+  .label-block--sub {
+    margin-bottom: var(--space-5);
+  }
+
+  .label {
+    font-family: var(--font-display);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--ls-caps);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .section-sub {
+    font-size: var(--fs-base);
+    color: var(--muted-2);
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+interface Props {
+  name: string;
+  tag: string;
+  href: string;
+  tech: string[];
+}
+
+const { name, tag, href, tech } = Astro.props;
+---
+
+<div class="card">
+  <div class="card-head">
+    <div class="card-title">
+      {name}<span class="tag"> - {tag}</span>
+    </div>
+    <a class="card-link" href={href} target="_blank" rel="noopener noreferrer">
+      GitHub &rarr;
+    </a>
+  </div>
+  <p class="card-blurb"><slot /></p>
+  <div class="tags">
+    {tech.map((item) => <span class="tag-chip">{item}</span>)}
+  </div>
+</div>
+
+<style>
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
+  }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    font-weight: 600;
+
+    .tag {
+      color: var(--muted-2);
+      font-weight: 400;
+      font-size: var(--fs-md);
+    }
+  }
+
+  .card-link {
+    font-size: var(--fs-sm);
+    color: var(--accent);
+    letter-spacing: var(--ls-wide);
+    flex: none;
+    transition: color var(--dur) ease;
+
+    &:hover {
+      color: var(--accent-hi);
+    }
+  }
+
+  .card-blurb {
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+    margin: 0 0 var(--space-3);
+    color: var(--text-3);
+    max-width: 60ch;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .tag-chip {
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    color: var(--muted);
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-tag);
+    padding: var(--space-1) var(--space-2);
+  }
+</style>

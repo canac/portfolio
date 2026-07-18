@@ -1,0 +1,86 @@
+---
+interface Props {
+  school: string;
+  degree: string;
+  date: string;
+}
+
+const { school, degree, date } = Astro.props;
+---
+
+<div class="entry">
+  <p class="org">{school}</p>
+  <p class="entry-sub">
+    <span class="role">{degree}</span>
+    <span class="dates">{date}</span>
+  </p>
+</div>
+
+<style>
+  /* ---- screen: dark resume sidebar, stacked ---- */
+  @media screen {
+    .entry {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .org {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .entry-sub {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .role {
+      margin: var(--space-1) 0;
+      font-size: var(--fs-xs);
+      color: var(--text-3);
+    }
+
+    .dates {
+      font-family: var(--font-mono);
+      font-size: var(--fs-2xs);
+      color: var(--muted-2);
+    }
+  }
+
+  /* ---- print: black-on-white document entry ---- */
+  @media print {
+    .org {
+      margin: 0;
+      font-weight: 600;
+      font-size: 12pt;
+      color: var(--print-ink);
+    }
+
+    .entry-sub {
+      margin: var(--space-1) 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-1) var(--space-4);
+    }
+
+    .role {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 12pt;
+      color: var(--print-ink);
+    }
+
+    .dates {
+      color: var(--print-muted);
+      font-size: 10pt;
+      white-space: nowrap;
+      flex: none;
+    }
+  }
+</style>

@@ -1,0 +1,403 @@
+---
+import { profile } from "../data/profile";
+import Education from "./Education.astro";
+import Experience from "./Experience.astro";
+import SkillGroup from "./SkillGroup.astro";
+
+const { firstName, lastName, fullName, title, phone, email, location } =
+  profile;
+---
+
+<article class="resume">
+  <div class="aside">
+    <div class="aside-inner">
+      <a class="back" href="/">&larr; Back to portfolio</a>
+      <h1 class="name">
+        <span class="name-stacked">
+          <span>{firstName}</span>
+          <span>{lastName}</span>
+        </span><span class="name-inline">{fullName}</span>
+      </h1>
+      <div class="role">{title}</div>
+      <p class="contact">
+        <span>{phone}</span>
+        <span class="sep" aria-hidden="true">&middot;</span>
+        <a href={`mailto:${email}`}>{email}</a>
+        <span class="sep" aria-hidden="true">&middot;</span>
+        <span>{location}</span>
+      </p>
+      <a class="pdf-btn" href="/resume.pdf" download>Download PDF</a>
+
+      <div class="side-rule" aria-hidden="true"></div>
+
+      <h2 class="section-label label-skills">Skills</h2>
+      <div class="skills">
+        <SkillGroup
+          category="Languages"
+          items={["TypeScript", "JavaScript", "Ruby", "SQL", "Python"]}
+        />
+        <SkillGroup
+          category="Frameworks & Libraries"
+          items={[
+            "React",
+            "Ruby on Rails",
+            "Node.js",
+            "Jest",
+            "RSpec",
+            "AngularJS",
+          ]}
+        />
+        <SkillGroup
+          category="Web"
+          items={["REST APIs", "GraphQL", "HTML", "CSS", "Tailwind CSS"]}
+        />
+        <SkillGroup
+          category="Infrastructure"
+          items={["AWS", "PostgreSQL", "GitHub Actions", "Docker", "CI/CD"]}
+        />
+        <SkillGroup
+          category="Developer Tools"
+          items={["Git", "shell scripting", "Claude Code"]}
+        />
+      </div>
+
+      <div class="side-rule" aria-hidden="true"></div>
+
+      <h2 class="section-label label-education">Education</h2>
+      <div class="education">
+        <Education
+          school="Thomas Edison State University"
+          degree="Bachelor of Science in Computer Science"
+          date="03/2016"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <h2 class="section-label label-experience">Experience</h2>
+    <div class="main-rule" aria-hidden="true"></div>
+    <div class="roles">
+      <Experience
+        company="Cru"
+        title="Senior Software Developer"
+        start="10/2022"
+        end="Present"
+        bullets={[
+          "Migrated a custom authentication system to Okta for a donation platform processing $75M annually, seamlessly transitioning 380,000 users with no production incidents.",
+          "Served as technical lead for multiple cross-functional initiatives, defining system architecture, decomposing work, coordinating implementation across engineers, and driving projects from planning through production delivery.",
+          "Led a multi-year migration of a donor CRM from AngularJS to React, modernizing the frontend architecture and improving application security and maintainability.",
+          "Improved Ruby on Rails GraphQL API performance by 25% and reduced JavaScript bundle sizes by 40%, decreasing page load times and improving perceived application responsiveness.",
+          "Extended the conference registration platform to support an additional department, eliminating a third-party vendor contract and saving tens of thousands of dollars annually.",
+          "Rebuilt the interactive campus map in React, generating 130 prospective student leads during its first year.",
+          "Implemented electronic HR submission and approval workflows using Ruby on Rails, GraphQL, and TypeScript, replacing paper-based processes and reducing manual administrative work.",
+          "Established team workflows for integrating AI-assisted development tools (Claude Code) into daily development, accelerating implementation, debugging, architectural exploration, and refactoring.",
+          "Mentored software engineers through code reviews, pair programming, and technical coaching, helping teammates resolve complex problems while promoting maintainable engineering practices.",
+        ]}
+      />
+      <Experience
+        company="Cru"
+        title="High School Field Staff"
+        start="08/2017"
+        end="10/2022"
+        bullets={[]}
+      />
+      <Experience
+        company="Cru"
+        title="Intern Software Developer"
+        start="08/2016"
+        end="08/2017"
+        bullets={[
+          "Developed the AngularJS frontend for the single-page rewrite of MissionHub, enabling campus staff to record, aggregate, and analyze ministry metrics across organizational levels.",
+          "Implemented frontend support for migrating conference registration payment processing to a PCI-compliant third-party provider.",
+        ]}
+      />
+    </div>
+  </div>
+</article>
+
+<style>
+  /*
+    One resume DOM, two layouts driven entirely by CSS:
+    - @media screen: a 2-column grid (sticky dark sidebar + main experience).
+    - @media print:  .aside/.aside-inner/.main become display:contents so their
+      children promote into the .resume grid, then `order` reflows them into the
+      single-column black-on-white document (name, contact, experience,
+      education, skills). Screen-only chrome (back link, PDF button, rules) is
+      hidden.
+  */
+
+  /* ---- screen: dark 2-column resume page ---- */
+  @media screen {
+    .resume {
+      width: var(--page-w);
+      max-width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-page);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+    }
+
+    .aside {
+      padding: var(--space-12) var(--space-9);
+      border-right: 1px solid var(--border);
+    }
+
+    .aside-inner {
+      position: sticky;
+      top: var(--space-12);
+    }
+
+    .main {
+      min-width: 0;
+      padding: var(--space-12);
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: var(--space-7);
+      font-size: var(--fs-sm);
+      color: var(--muted-2);
+      transition: color var(--dur) ease;
+
+      &:hover {
+        color: var(--text-2);
+      }
+    }
+
+    .name {
+      margin: 0 0 var(--space-2);
+      font-family: var(--font-display);
+      font-size: var(--fs-3xl);
+      font-weight: 700;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
+    }
+
+    /* Screen shows the name split across two lines. */
+    .name-stacked span {
+      display: block;
+    }
+
+    .name-inline {
+      display: none;
+    }
+
+    .role {
+      font-size: var(--fs-base);
+      color: var(--muted);
+      margin-bottom: var(--space-7);
+    }
+
+    .contact {
+      margin: 0 0 var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      font-size: var(--fs-sm);
+      color: var(--text-3);
+
+      a {
+        color: var(--accent);
+        transition: color var(--dur) ease;
+
+        &:hover {
+          color: var(--accent-hi);
+        }
+      }
+
+      .sep {
+        display: none;
+      }
+    }
+
+    .pdf-btn {
+      display: block;
+      text-align: center;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--accent);
+      border-radius: var(--radius-btn);
+      padding: var(--space-2) 0;
+      margin-bottom: var(--space-8);
+      transition: background var(--dur) ease;
+
+      &:hover {
+        background: var(--accent-hi);
+      }
+    }
+
+    .side-rule {
+      height: 1px;
+      background: var(--border);
+      margin: var(--space-6) 0;
+    }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      letter-spacing: var(--ls-caps);
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .label-skills,
+    .label-education {
+      margin: 0 0 var(--space-4);
+    }
+
+    .label-experience {
+      margin: 0 0 var(--space-2);
+    }
+
+    .skills {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .main-rule {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: var(--space-8);
+    }
+
+    .roles {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+    .resume {
+      grid-template-columns: 1fr;
+    }
+
+    .aside {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-10) var(--space-7);
+    }
+
+    .aside-inner {
+      position: static;
+    }
+
+    .main {
+      padding: var(--space-10) var(--space-7);
+    }
+  }
+
+  /* ---- print: single-column black-on-white document ---- */
+  @media print {
+    .resume {
+      display: grid;
+      grid-template-columns: 1fr;
+      color: var(--print-body);
+      font-size: 10pt;
+      line-height: 1.22;
+      /* Generic system font for print: deterministic metrics, no webfont. */
+      font-family: Arial, sans-serif;
+    }
+
+    /* Dissolve the screen wrappers so their children become grid items. */
+    .aside,
+    .aside-inner,
+    .main {
+      display: contents;
+    }
+
+    /* Screen-only chrome. */
+    .back,
+    .role,
+    .pdf-btn,
+    .side-rule,
+    .main-rule {
+      display: none;
+    }
+
+    .name {
+      order: 1;
+      margin: 0;
+      font-family: inherit;
+      font-size: 20pt;
+      font-weight: 700;
+      letter-spacing: var(--ls-tight);
+      color: var(--print-ink);
+    }
+
+    /* Print renders the name as a single text run (identical shaping to a
+       one-line heading); the two-line screen version is hidden. */
+    .name-stacked {
+      display: none;
+    }
+
+    .contact {
+      order: 1;
+      margin: 0.2rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      color: var(--print-muted);
+      font-size: 12pt;
+
+      a {
+        color: var(--print-body);
+        text-decoration: none;
+      }
+
+      .sep {
+        color: var(--print-faint);
+      }
+    }
+
+    .section-label {
+      margin: 18pt 0 5pt;
+      padding-bottom: 3pt;
+      border-bottom: 1px solid var(--print-rule);
+      font-family: inherit;
+      font-size: 12pt;
+      font-weight: 500;
+      color: var(--print-ink);
+    }
+
+    .label-experience {
+      order: 2;
+    }
+
+    .roles {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 12pt;
+    }
+
+    .label-education {
+      order: 3;
+    }
+
+    .education {
+      order: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 12pt;
+    }
+
+    .label-skills {
+      order: 4;
+    }
+
+    .skills {
+      order: 4;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2pt;
+    }
+  }
+</style>

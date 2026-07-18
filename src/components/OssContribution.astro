@@ -1,0 +1,84 @@
+---
+interface Props {
+  name: string;
+  href: string;
+}
+
+const { name, href } = Astro.props;
+
+// Extract the "owner/repo#number" label from a GitHub pull request URL.
+const match = href.match(
+  /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/,
+);
+const label = match ? `${match[1]}#${match[2]}` : href;
+---
+
+<div class="oss-row">
+  <div class="oss-name">{name}</div>
+  <div class="oss-body">
+    <p class="oss-blurb"><slot /></p>
+    <div class="oss-refs">
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {label}
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .oss-row {
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: var(--space-5);
+    align-items: baseline;
+  }
+
+  .oss-name {
+    font-family: var(--font-display);
+    font-size: var(--fs-md);
+    font-weight: 600;
+    width: var(--oss-name-w);
+    flex: none;
+  }
+
+  .oss-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .oss-blurb {
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+    margin: 0 0 var(--space-2);
+    color: var(--text-3);
+  }
+
+  .oss-refs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+
+    a {
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      color: var(--accent);
+      transition: color var(--dur) ease;
+
+      &:hover {
+        color: var(--accent-hi);
+      }
+    }
+  }
+
+  @media (max-width: 820px) {
+    .oss-row {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .oss-name {
+      width: auto;
+    }
+  }
+</style>

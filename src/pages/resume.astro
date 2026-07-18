@@ -1,0 +1,13 @@
+---
+import Resume from "../components/Resume.astro";
+import { profile } from "../data/profile";
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  bare
+  title={`${profile.fullName} | Resume`}
+  description={`Resume of ${profile.fullName}, ${profile.title}.`}
+>
+  <Resume />
+</Base>
