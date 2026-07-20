@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "Caleb Cox <canac@users.noreply.github.com>",
   "type": "module",
-  "packageManager": "pnpm@11.13.0",
+  "packageManager": "pnpm@11.15.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

@@ -45,9 +45,6 @@ const { title, description, bare = false } = Astro.props;
   .page {
     width: var(--page-w);
     max-width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-page);
     display: flex;
   }
 
@@ -60,13 +57,13 @@ const { title, description, bare = false } = Astro.props;
     gap: var(--space-10);
   }
 
-  @media (max-width: 820px) {
+  @media (width <= 960px) {
     .page {
       flex-direction: column;
     }
 
     .main {
-      padding: var(--space-10) var(--space-7);
+      padding: var(--space-10);
     }
   }
 </style>

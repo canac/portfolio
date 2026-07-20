@@ -28,15 +28,15 @@
   --font-mono: "IBM Plex Mono", monospace;
 
   /* radius */
-  --radius-page: 8px;
   --radius-card: 10px;
   --radius-tag: 4px;
   --radius-btn: 6px;
 
   /* size */
-  --page-w: 1120px; /* site + resume shell width */
+  --page-w: 1260px; /* site + resume shell width */
   --sidebar-w: 288px;
   --oss-name-w: 130px; /* OSS row label column */
+  --pdf-btn-w: 10rem; /* resume download button */
 
   /* motion */
   --dur: 120ms;
@@ -92,7 +92,7 @@ body {
   font-family: var(--font-body);
   display: flex;
   justify-content: center;
-  padding: var(--space-10) var(--space-6);
+  padding: 0;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -111,6 +111,5 @@ a {
   body {
     background: #fff;
     display: block;
-    padding: 0;
   }
 }

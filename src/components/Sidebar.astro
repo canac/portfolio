@@ -13,21 +13,19 @@ const navLinks = [
 
 <aside class="sidebar">
   <div class="sidebar-inner">
-    <h1 class="name">{firstName}<br />{lastName}</h1>
+    <h1 class="name">{firstName} <br class="name-break" />{lastName}</h1>
     <div class="role">{title}</div>
     <nav class="nav">
       {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
     </nav>
     <div class="sidebar-rule"></div>
     <div class="social">
-      <a href={github} target="_blank" rel="noopener noreferrer">
-        GitHub &nearr;
-      </a>
+      <a href={github} target="_blank" rel="noopener noreferrer"> GitHub </a>
       <a href={linkedin} target="_blank" rel="noopener noreferrer">
-        LinkedIn &nearr;
+        LinkedIn
       </a>
-      <a href={`mailto:${email}`}>Email &nearr;</a>
-      <a href="/resume">R&eacute;sum&eacute; &nearr;</a>
+      <a href={`mailto:${email}`}>Email</a>
+      <a href="/resume">Resume</a>
     </div>
   </div>
 </aside>
@@ -99,17 +97,32 @@ const navLinks = [
     }
   }
 
-  @media (max-width: 820px) {
+  @media (width <= 960px) {
     .sidebar {
       width: 100%;
-      padding: var(--space-10) var(--space-7);
+      padding: var(--space-10);
       border-right: none;
       border-bottom: 1px solid var(--border);
+    }
+
+    .role {
+      margin-bottom: var(--space-4);
     }
 
     .sidebar-inner {
       position: static;
       top: auto;
+    }
+
+    .name-break,
+    .nav,
+    .sidebar-rule {
+      display: none;
+    }
+
+    .social {
+      flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 </style>
