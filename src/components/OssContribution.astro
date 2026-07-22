@@ -18,7 +18,7 @@ const label = match ? `${match[1]}#${match[2]}` : href;
   <div class="oss-body">
     <p class="oss-blurb"><slot /></p>
     <div class="oss-refs">
-      <a href={href} target="_blank" rel="noopener noreferrer">
+      <a class="link-accent" href={href} target="_blank" rel="noopener noreferrer">
         {label}
       </a>
     </div>
@@ -62,12 +62,6 @@ const label = match ? `${match[1]}#${match[2]}` : href;
     a {
       font-family: var(--font-mono);
       font-size: var(--fs-xs);
-      color: var(--accent);
-      transition: color var(--dur) ease;
-
-      &:hover {
-        color: var(--accent-hi);
-      }
     }
   }
 

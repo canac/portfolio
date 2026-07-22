@@ -36,7 +36,6 @@
   --page-w: 1260px; /* site + resume shell width */
   --sidebar-w: 288px;
   --oss-name-w: 130px; /* OSS row label column */
-  --pdf-btn-w: 10rem; /* resume download button */
 
   /* motion */
   --dur: 120ms;
@@ -99,6 +98,15 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.link-accent {
+  color: var(--accent);
+  transition: color var(--dur) ease;
+
+  &:hover {
+    color: var(--accent-hi);
+  }
 }
 
 @page {

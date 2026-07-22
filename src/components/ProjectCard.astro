@@ -14,7 +14,7 @@ const { name, tag, href, tech } = Astro.props;
     <div class="card-title">
       {name}<span class="tag"> - {tag}</span>
     </div>
-    <a class="card-link" href={href} target="_blank" rel="noopener noreferrer">
+    <a class="card-link link-accent" href={href} target="_blank" rel="noopener noreferrer">
       GitHub
     </a>
   </div>
@@ -54,14 +54,8 @@ const { name, tag, href, tech } = Astro.props;
 
   .card-link {
     font-size: var(--fs-sm);
-    color: var(--accent);
     letter-spacing: var(--ls-wide);
     flex: none;
-    transition: color var(--dur) ease;
-
-    &:hover {
-      color: var(--accent-hi);
-    }
   }
 
   .card-blurb {

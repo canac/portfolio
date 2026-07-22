@@ -2,21 +2,21 @@
 import { profile } from "../data/profile";
 import Education from "./Education.astro";
 import Experience from "./Experience.astro";
+import NameHeading from "./NameHeading.astro";
 import SkillGroup from "./SkillGroup.astro";
 
-const { firstName, lastName, title, phone, email, location } = profile;
+const { phone, email, location } = profile;
 ---
 
 <article class="resume">
   <div class="aside">
     <div class="aside-inner">
       <a class="back" href="/">&larr; Back to portfolio</a>
-      <h1 class="name">{firstName} <br class="name-break" />{lastName}</h1>
-      <div class="role">{title}</div>
+      <NameHeading />
       <p class="contact">
         <span>{phone}</span>
         <span class="sep" aria-hidden="true">&middot;</span>
-        <a href={`mailto:${email}`}>{email}</a>
+        <a class="link-accent" href={`mailto:${email}`}>{email}</a>
         <span class="sep" aria-hidden="true">&middot;</span>
         <span>{location}</span>
       </p>
@@ -127,8 +127,10 @@ const { firstName, lastName, title, phone, email, location } = profile;
     .resume {
       width: var(--page-w);
       max-width: 100%;
+      min-height: 100dvh;
       display: grid;
       grid-template-columns: var(--sidebar-w) 1fr;
+      grid-template-rows: 1fr;
     }
 
     .aside {
@@ -158,18 +160,7 @@ const { firstName, lastName, title, phone, email, location } = profile;
       }
     }
 
-    .name {
-      margin: 0 0 var(--space-2);
-      font-family: var(--font-display);
-      font-size: var(--fs-3xl);
-      font-weight: 700;
-      letter-spacing: var(--ls-tight);
-      line-height: var(--lh-tight);
-    }
-
-    .role {
-      font-size: var(--fs-base);
-      color: var(--muted);
+    .aside-inner :global(.role) {
       margin-bottom: var(--space-7);
     }
 
@@ -181,15 +172,6 @@ const { firstName, lastName, title, phone, email, location } = profile;
       font-size: var(--fs-sm);
       color: var(--text-3);
 
-      a {
-        color: var(--accent);
-        transition: color var(--dur) ease;
-
-        &:hover {
-          color: var(--accent-hi);
-        }
-      }
-
       .sep {
         display: none;
       }
@@ -197,15 +179,14 @@ const { firstName, lastName, title, phone, email, location } = profile;
 
     .pdf-btn {
       display: block;
-      text-align: center;
+      width: fit-content;
       font-size: var(--fs-sm);
       font-weight: 600;
       color: var(--bg);
       background: var(--accent);
       border-radius: var(--radius-btn);
-      padding: var(--space-2) 0;
+      padding: var(--space-2) var(--space-5);
       margin-bottom: var(--space-8);
-      width: var(--pdf-btn-w);
       transition: background var(--dur) ease;
 
       &:hover {
@@ -260,6 +241,9 @@ const { firstName, lastName, title, phone, email, location } = profile;
     /* Flatten the two-column wrappers into one column matching the PDF reading order. */
     .resume {
       grid-template-columns: 1fr;
+      grid-template-rows: none;
+      min-height: 0;
+      row-gap: var(--space-6);
       padding: var(--space-10);
     }
 
@@ -284,26 +268,24 @@ const { firstName, lastName, title, phone, email, location } = profile;
       order: 3;
     }
 
+    /* Spacing comes from the grid row-gap; drop the desktop/section margins so
+       they don't stack with it. */
+    .back,
+    .contact,
+    .pdf-btn,
+    .label-experience,
+    .label-education,
+    .label-skills,
+    .aside-inner :global(.name),
+    .aside-inner :global(.role) {
+      margin: 0;
+    }
+
     /* Border-top divides the header from the body, replacing the sidebar's
        screen border. */
     .label-experience {
-      margin-bottom: var(--space-4);
       padding-top: var(--space-8);
       border-top: 1px solid var(--border);
-    }
-
-    .roles,
-    .education {
-      margin-bottom: var(--space-8);
-    }
-
-    /* Name on one line. */
-    .name-break {
-      display: none;
-    }
-
-    .role {
-      margin-bottom: var(--space-4);
     }
 
     /* Contact on one line. */
@@ -345,26 +327,24 @@ const { firstName, lastName, title, phone, email, location } = profile;
 
     /* Screen-only chrome. */
     .back,
-    .role,
     .pdf-btn,
     .side-rule,
-    .main-rule {
+    .main-rule,
+    .aside-inner :global(.role) {
       display: none;
     }
 
-    .name {
+    .aside-inner :global(.name) {
       order: 1;
       margin: 0;
       font-family: inherit;
       font-size: 20pt;
       font-weight: 700;
       letter-spacing: var(--ls-tight);
+      /* Keep the print leading (from .resume) rather than the tight screen
+         line-height the shared .name now carries. */
+      line-height: inherit;
       color: var(--print-ink);
-    }
-
-    /* Print renders the name as a single text run; the line break is hidden. */
-    .name-break {
-      display: none;
     }
 
     .contact {
