@@ -5,7 +5,7 @@ const { firstName, lastName, title } = profile;
 ---
 
 <h1 class="name">{firstName} <br class="name-break" />{lastName}</h1>
-<div class="role">{title}</div>
+<div class="name-role">{title}</div>
 
 <style>
   .name {
@@ -17,7 +17,7 @@ const { firstName, lastName, title } = profile;
     line-height: var(--lh-tight);
   }
 
-  .role {
+  .name-role {
     font-size: var(--fs-base);
     color: var(--muted);
   }
