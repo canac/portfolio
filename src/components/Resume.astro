@@ -41,19 +41,11 @@ const { phone, email, location, website, github, linkedin } = profile;
       <div class="skills">
         <SkillGroup
           category="Languages"
-          items={["TypeScript", "JavaScript", "Ruby", "SQL", "Python"]}
+          items={["TypeScript", "JavaScript", "Ruby", "SQL"]}
         />
         <SkillGroup
           category="Frameworks & Libraries"
-          items={[
-            "React",
-            "Next.js",
-            "Ruby on Rails",
-            "Node.js",
-            "Jest",
-            "RSpec",
-            "Angular",
-          ]}
+          items={["React", "Next.js", "Ruby on Rails", "Node.js"]}
         />
         <SkillGroup
           category="Web"
@@ -63,6 +55,7 @@ const { phone, email, location, website, github, linkedin } = profile;
           category="Infrastructure"
           items={["AWS", "PostgreSQL", "GitHub Actions", "Docker", "CI/CD"]}
         />
+        <SkillGroup category="Testing" items={["Jest", "RSpec"]} />
         <SkillGroup
           category="Developer Tools"
           items={["Git", "shell scripting", "Claude Code"]}
@@ -97,7 +90,7 @@ const { phone, email, location, website, github, linkedin } = profile;
           "Led a multi-year migration of a donor CRM from AngularJS to React, modernizing the frontend architecture and improving application security and maintainability.",
           "Improved Ruby on Rails GraphQL API performance by 25% and reduced JavaScript bundle sizes by 40%, decreasing page load times and improving perceived application responsiveness.",
           "Extended the conference registration platform to support an additional department, eliminating a third-party vendor contract and saving tens of thousands of dollars annually.",
-          "Rebuilt the interactive campus map in React, generating 130 prospective student leads during its first year.",
+          "Rebuilt the interactive campus map in React, generating 130 prospective student leads in its first year.",
           "Implemented electronic HR submission and approval workflows using Ruby on Rails, GraphQL, and TypeScript, replacing paper-based processes and reducing manual administrative work.",
           "Established team workflows for integrating AI-assisted development tools (Claude Code) into daily development, accelerating implementation, debugging, architectural exploration, and refactoring.",
           "Mentored software engineers through code reviews, pair programming, and technical coaching, helping teammates resolve complex problems while promoting maintainable engineering practices.",
