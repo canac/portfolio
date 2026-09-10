@@ -1,0 +1,18 @@
+---
+interface Props {
+  href: string;
+  external?: boolean;
+}
+
+const { href, external = false } = Astro.props;
+const label = href.replace(/^(mailto:|https:\/\/(www\.)?)/, "");
+---
+
+<a
+  class="link-accent"
+  href={href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+>
+  <slot>{label}</slot>
+</a>

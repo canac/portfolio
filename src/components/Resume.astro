@@ -2,24 +2,37 @@
 import { profile } from "../data/profile";
 import Education from "./Education.astro";
 import Experience from "./Experience.astro";
+import Link from "./Link.astro";
 import NameHeading from "./NameHeading.astro";
 import SkillGroup from "./SkillGroup.astro";
 
-const { phone, email, location } = profile;
+const { phone, email, location, website, github, linkedin } = profile;
 ---
 
 <article class="resume">
   <div class="aside">
     <div class="aside-inner">
       <a class="back" href="/">&larr; Back to portfolio</a>
-      <NameHeading />
-      <p class="contact">
-        <span>{phone}</span>
-        <span class="sep" aria-hidden="true">&middot;</span>
-        <a class="link-accent" href={`mailto:${email}`}>{email}</a>
-        <span class="sep" aria-hidden="true">&middot;</span>
-        <span>{location}</span>
-      </p>
+      <header class="identity">
+        <NameHeading />
+        <p class="contact">
+          <span class="contact-line">
+            <span>{phone}</span>
+            <span class="sep" aria-hidden="true">&middot;</span>
+            <Link href={`mailto:${email}`} />
+            <span class="sep" aria-hidden="true">&middot;</span>
+            <span>{location}</span>
+          </span>
+          <span class="sep sep-group" aria-hidden="true">&middot;</span>
+          <span class="contact-line">
+            <Link href={website} external />
+            <span class="sep" aria-hidden="true">&middot;</span>
+            <Link href={github} external />
+            <span class="sep" aria-hidden="true">&middot;</span>
+            <Link href={linkedin} external />
+          </span>
+        </p>
+      </header>
       <a class="pdf-btn" href="/resume.pdf" download>Download PDF</a>
 
       <div class="side-rule" aria-hidden="true"></div>
@@ -119,8 +132,8 @@ const { phone, email, location } = profile;
     - @media screen: a 2-column grid (sticky dark sidebar + main experience).
     - @media print:  .aside/.aside-inner/.main become display:contents so their
       children promote into the .resume grid, then `order` reflows them into the
-      single-column black-on-white document (contact, name, experience,
-      education, skills). Screen-only chrome (back link, PDF button, rules) is
+      single-column black-on-white document (name + contact header,
+      experience, education, skills). Screen-only chrome (back link, PDF button, rules) is
       hidden.
   */
 
@@ -164,6 +177,11 @@ const { phone, email, location } = profile;
 
     .aside-inner :global(.name-role) {
       margin-bottom: var(--space-7);
+    }
+
+    .identity,
+    .contact-line {
+      display: contents;
     }
 
     .contact {
@@ -337,7 +355,6 @@ const { phone, email, location } = profile;
     }
 
     .aside-inner :global(.name) {
-      order: 2;
       margin: 0;
       font-family: inherit;
       font-size: 20pt;
@@ -349,24 +366,40 @@ const { phone, email, location } = profile;
       color: var(--print-ink);
     }
 
-    .contact {
+    .identity {
       order: 1;
-      margin: 0 0 3pt;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-      gap: var(--space-2);
+      align-items: last baseline;
+      gap: var(--space-6);
+    }
+
+    .contact {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       color: var(--print-muted);
       font-size: 9pt;
 
-      a {
+      :global(a) {
         color: var(--print-body);
         text-decoration: none;
       }
 
       .sep {
+        display: inline;
+        color: var(--print-faint);
+      }
+
+      .sep-group {
         display: none;
       }
+    }
+
+    .contact-line {
+      display: flex;
+      gap: var(--space-1);
     }
 
     .section-label {
