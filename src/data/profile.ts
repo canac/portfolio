@@ -3,6 +3,7 @@ export const profile = {
   lastName: "Cox",
   fullName: "Caleb Cox",
   title: "Senior Software Developer",
+  headline: "Senior Full-Stack Software Engineer",
   phone: "(469) 907-4156",
   email: "caleb@calebcox.dev",
   location: "McKinney, TX",

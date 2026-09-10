@@ -111,7 +111,7 @@ a {
 
 @page {
   size: Letter;
-  margin: 0.35in 1in 0.5in;
+  margin: 0.35in 0.75in 0.5in;
 }
 
 @media print {

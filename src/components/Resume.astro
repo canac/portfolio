@@ -6,7 +6,7 @@ import Link from "./Link.astro";
 import NameHeading from "./NameHeading.astro";
 import SkillGroup from "./SkillGroup.astro";
 
-const { phone, email, location, website, github, linkedin } = profile;
+const { title, phone, email, location, website, github, linkedin } = profile;
 ---
 
 <article class="resume">
@@ -76,12 +76,19 @@ const { phone, email, location, website, github, linkedin } = profile;
   </div>
 
   <div class="main">
+    <p class="summary">
+      Senior full-stack software engineer with 5 years of experience building
+      and modernizing large-scale TypeScript, Ruby on Rails, and React
+      applications. Leads cross-functional initiatives, modernizing legacy
+      applications, improving performance, and mentoring engineers across
+      complex web platforms.
+    </p>
     <h2 class="section-label label-experience">Experience</h2>
     <div class="main-rule" aria-hidden="true"></div>
     <div class="roles">
       <Experience
         company="Cru"
-        title="Senior Software Developer"
+        title={title}
         start="10/2022"
         end="Present"
         bullets={[
@@ -125,9 +132,9 @@ const { phone, email, location, website, github, linkedin } = profile;
     - @media screen: a 2-column grid (sticky dark sidebar + main experience).
     - @media print:  .aside/.aside-inner/.main become display:contents so their
       children promote into the .resume grid, then `order` reflows them into the
-      single-column black-on-white document (name + contact header,
-      experience, education, skills). Screen-only chrome (back link, PDF button, rules) is
-      hidden.
+      single-column black-on-white document (name + contact header, summary,
+      experience, education, skills). Screen-only chrome (back link, PDF
+      button, rules) is hidden.
   */
 
   /* ---- screen: dark 2-column resume page ---- */
@@ -243,6 +250,14 @@ const { phone, email, location, website, github, linkedin } = profile;
       margin-bottom: var(--space-8);
     }
 
+    .summary {
+      margin: 0 0 var(--space-8);
+      font-size: var(--fs-base);
+      line-height: var(--lh-base);
+      color: var(--text-3);
+      text-wrap: pretty;
+    }
+
     .roles {
       display: flex;
       flex-direction: column;
@@ -266,19 +281,23 @@ const { phone, email, location, website, github, linkedin } = profile;
       display: contents;
     }
 
+    .summary {
+      order: 1;
+    }
+
     .label-experience,
     .roles {
-      order: 1;
+      order: 2;
     }
 
     .label-education,
     .education {
-      order: 2;
+      order: 3;
     }
 
     .label-skills,
     .skills {
-      order: 3;
+      order: 4;
     }
 
     /* Spacing comes from the grid row-gap; drop the desktop/section margins so
@@ -286,6 +305,7 @@ const { phone, email, location, website, github, linkedin } = profile;
     .back,
     .contact,
     .pdf-btn,
+    .summary,
     .label-experience,
     .label-education,
     .label-skills,
@@ -396,7 +416,7 @@ const { phone, email, location, website, github, linkedin } = profile;
     }
 
     .section-label {
-      margin: 13pt 0 4pt;
+      margin: 9pt 0 4pt;
       padding-bottom: 3pt;
       border-bottom: 1px solid var(--print-rule);
       font-family: inherit;
@@ -405,34 +425,42 @@ const { phone, email, location, website, github, linkedin } = profile;
       color: var(--print-ink);
     }
 
-    .label-experience {
+    .summary {
       order: 3;
+      margin: 0.35rem 0 0;
+      font-size: 10pt;
+      line-height: 1.22;
+      color: var(--print-body);
+    }
+
+    .label-experience {
+      order: 4;
     }
 
     .roles {
-      order: 3;
+      order: 4;
       display: flex;
       flex-direction: column;
       gap: 12pt;
     }
 
     .label-education {
-      order: 4;
+      order: 5;
     }
 
     .education {
-      order: 4;
+      order: 5;
       display: flex;
       flex-direction: column;
       gap: 12pt;
     }
 
     .label-skills {
-      order: 5;
+      order: 6;
     }
 
     .skills {
-      order: 5;
+      order: 6;
       margin: 0;
       display: flex;
       flex-direction: column;
