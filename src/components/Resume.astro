@@ -119,7 +119,7 @@ const { phone, email, location } = profile;
     - @media screen: a 2-column grid (sticky dark sidebar + main experience).
     - @media print:  .aside/.aside-inner/.main become display:contents so their
       children promote into the .resume grid, then `order` reflows them into the
-      single-column black-on-white document (name, contact, experience,
+      single-column black-on-white document (contact, name, experience,
       education, skills). Screen-only chrome (back link, PDF button, rules) is
       hidden.
   */
@@ -337,7 +337,7 @@ const { phone, email, location } = profile;
     }
 
     .aside-inner :global(.name) {
-      order: 1;
+      order: 2;
       margin: 0;
       font-family: inherit;
       font-size: 20pt;
@@ -351,12 +351,13 @@ const { phone, email, location } = profile;
 
     .contact {
       order: 1;
-      margin: 0.2rem 0 0;
+      margin: 0 0 3pt;
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
       gap: var(--space-2);
       color: var(--print-muted);
-      font-size: 12pt;
+      font-size: 9pt;
 
       a {
         color: var(--print-body);
@@ -364,7 +365,7 @@ const { phone, email, location } = profile;
       }
 
       .sep {
-        color: var(--print-faint);
+        display: none;
       }
     }
 
@@ -379,33 +380,33 @@ const { phone, email, location } = profile;
     }
 
     .label-experience {
-      order: 2;
+      order: 3;
     }
 
     .roles {
-      order: 2;
+      order: 3;
       display: flex;
       flex-direction: column;
       gap: 12pt;
     }
 
     .label-education {
-      order: 3;
+      order: 4;
     }
 
     .education {
-      order: 3;
+      order: 4;
       display: flex;
       flex-direction: column;
       gap: 12pt;
     }
 
     .label-skills {
-      order: 4;
+      order: 5;
     }
 
     .skills {
-      order: 4;
+      order: 5;
       margin: 0;
       display: flex;
       flex-direction: column;
