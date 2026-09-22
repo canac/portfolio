@@ -1,17 +1,22 @@
 ---
 interface Props {
   company: string;
+  location: string;
   title: string;
   start: string;
   end: string;
   bullets: string[];
 }
 
-const { company, title, start, end, bullets } = Astro.props;
+const { company, location, title, start, end, bullets } = Astro.props;
 ---
 
 <div class="entry">
-  <p class="org">{company}</p>
+  <p class="org">
+    <span>{company}</span>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <span class="location">{location}</span>
+  </p>
   <p class="entry-sub">
     <span class="role">{title}</span>
     <span class="dates">{start} &ndash; {end}</span>
@@ -61,6 +66,9 @@ const { company, title, start, end, bullets } = Astro.props;
     .org {
       order: 2;
       margin: 0 0 var(--space-3);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
       font-size: var(--fs-sm);
       color: var(--muted);
     }
@@ -94,9 +102,25 @@ const { company, title, start, end, bullets } = Astro.props;
   @media print {
     .org {
       margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-4);
       font-weight: 600;
       font-size: 12pt;
       color: var(--print-ink);
+    }
+
+    .location {
+      font-weight: 400;
+      font-size: 10pt;
+      color: var(--print-muted);
+      white-space: nowrap;
+      flex: none;
+    }
+
+    .sep {
+      display: none;
     }
 
     .entry-sub {
