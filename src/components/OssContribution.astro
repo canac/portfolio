@@ -7,16 +7,16 @@ interface Props {
 const { name, href } = Astro.props;
 
 // Extract the "owner/repo#number" label from a GitHub pull request URL.
-const match = href.match(
-  /^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/,
-);
+const match = href.match(/^https:\/\/github\.com\/([^/]+\/[^/]+)\/pull\/(\d+)$/);
 const label = match ? `${match[1]}#${match[2]}` : href;
 ---
 
 <div class="oss-row">
   <div class="oss-name">{name}</div>
   <div class="oss-body">
-    <p class="oss-blurb"><slot /></p>
+    <p class="oss-blurb">
+      <slot />
+    </p>
     <div class="oss-refs">
       <a class="link-accent" href={href} target="_blank" rel="noopener noreferrer">
         {label}

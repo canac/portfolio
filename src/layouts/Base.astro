@@ -26,18 +26,16 @@ const { title, description, bare = false } = Astro.props;
     />
   </head>
   <body>
-    {
-      bare ? (
-        <slot />
-      ) : (
-        <div class="page">
-          <slot name="sidebar" />
-          <main class="main">
-            <slot />
-          </main>
-        </div>
-      )
-    }
+    {bare ? (
+      <slot />
+    ) : (
+      <div class="page">
+        <slot name="sidebar" />
+        <main class="main">
+          <slot />
+        </main>
+      </div>
+    )}
   </body>
 </html>
 

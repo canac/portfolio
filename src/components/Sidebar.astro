@@ -16,28 +16,24 @@ const navLinks = [
   <div class="sidebar-inner">
     <NameHeading />
     <nav class="nav">
-      {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+      {navLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
     </nav>
     <div class="sidebar-rule"></div>
     <div class="social">
-      <a
-        class="link-accent"
-        href={github}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a class="link-accent" href={github} target="_blank" rel="noopener noreferrer">
         GitHub
       </a>
-      <a
-        class="link-accent"
-        href={linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a class="link-accent" href={linkedin} target="_blank" rel="noopener noreferrer">
         LinkedIn
       </a>
-      <a class="link-accent" href={`mailto:${email}`}>Email</a>
-      <a class="link-accent" href="/resume">Resume</a>
+      <a class="link-accent" href={`mailto:${email}`}>
+        Email
+      </a>
+      <a class="link-accent" href="/resume">
+        Resume
+      </a>
     </div>
   </div>
 </aside>

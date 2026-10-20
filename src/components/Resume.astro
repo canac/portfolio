@@ -12,54 +12,53 @@ const { title, phone, email, location, website, github, linkedin } = profile;
 <article class="resume">
   <div class="aside">
     <div class="aside-inner">
-      <a class="back" href="/">&larr; Back to portfolio</a>
+      <a class="back" href="/">
+        &larr; Back to portfolio
+      </a>
       <header class="identity">
         <NameHeading />
         <p class="contact">
           <span class="contact-line">
             <span>{phone}</span>
-            <span class="sep" aria-hidden="true">&middot;</span>
+            <span class="sep" aria-hidden="true">
+              &middot;
+            </span>
             <Link href={`mailto:${email}`} />
-            <span class="sep" aria-hidden="true">&middot;</span>
+            <span class="sep" aria-hidden="true">
+              &middot;
+            </span>
             <span>{location}</span>
           </span>
-          <span class="sep sep-group" aria-hidden="true">&middot;</span>
+          <span class="sep sep-group" aria-hidden="true">
+            &middot;
+          </span>
           <span class="contact-line">
             <Link href={website} external />
-            <span class="sep" aria-hidden="true">&middot;</span>
+            <span class="sep" aria-hidden="true">
+              &middot;
+            </span>
             <Link href={github} external />
-            <span class="sep" aria-hidden="true">&middot;</span>
+            <span class="sep" aria-hidden="true">
+              &middot;
+            </span>
             <Link href={linkedin} external />
           </span>
         </p>
       </header>
-      <a class="pdf-btn" href="/resume.pdf" download>Download PDF</a>
+      <a class="pdf-btn" href="/resume.pdf" download>
+        Download PDF
+      </a>
 
       <div class="side-rule" aria-hidden="true"></div>
 
       <h2 class="section-label label-skills">Skills</h2>
       <div class="skills">
-        <SkillGroup
-          category="Languages"
-          items={["TypeScript", "JavaScript", "Ruby", "SQL"]}
-        />
-        <SkillGroup
-          category="Frameworks & Libraries"
-          items={["React", "Next.js", "Ruby on Rails", "Node.js"]}
-        />
-        <SkillGroup
-          category="Web"
-          items={["REST APIs", "GraphQL", "HTML", "CSS", "Tailwind CSS"]}
-        />
-        <SkillGroup
-          category="Infrastructure"
-          items={["AWS", "PostgreSQL", "GitHub Actions", "Docker", "CI/CD"]}
-        />
+        <SkillGroup category="Languages" items={["TypeScript", "JavaScript", "Ruby", "SQL"]} />
+        <SkillGroup category="Frameworks & Libraries" items={["React", "Next.js", "Ruby on Rails", "Node.js"]} />
+        <SkillGroup category="Web" items={["REST APIs", "GraphQL", "HTML", "CSS", "Tailwind CSS"]} />
+        <SkillGroup category="Infrastructure" items={["AWS", "PostgreSQL", "GitHub Actions", "Docker", "CI/CD"]} />
         <SkillGroup category="Testing" items={["Jest", "RSpec"]} />
-        <SkillGroup
-          category="Developer Tools"
-          items={["Git", "shell scripting", "Claude Code"]}
-        />
+        <SkillGroup category="Developer Tools" items={["Git", "shell scripting", "Claude Code"]} />
       </div>
 
       <div class="side-rule" aria-hidden="true"></div>
@@ -77,11 +76,10 @@ const { title, phone, email, location, website, github, linkedin } = profile;
 
   <div class="main">
     <p class="summary">
-      Senior full-stack software engineer with 5+ years architecting, building,
-      and scaling TypeScript, Ruby on Rails, and React applications. Technical
-      lead for cross-functional initiatives spanning product development,
-      performance optimization, and application modernization. Mentors engineers
-      and delivers software serving hundreds of thousands of users.
+      Senior full-stack software engineer with 5+ years architecting, building, and scaling TypeScript, Ruby on Rails,
+      and React applications. Technical lead for cross-functional initiatives spanning product development, performance
+      optimization, and application modernization. Mentors engineers and delivers software serving hundreds of thousands
+      of users.
     </p>
     <h2 class="section-label label-experience">Experience</h2>
     <div class="main-rule" aria-hidden="true"></div>

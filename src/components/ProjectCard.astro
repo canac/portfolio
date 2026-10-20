@@ -12,15 +12,20 @@ const { name, tag, href, tech } = Astro.props;
 <div class="card">
   <div class="card-head">
     <div class="card-title">
-      {name}<span class="tag"> - {tag}</span>
+      {name}
+      <span class="tag"> - {tag}</span>
     </div>
     <a class="card-link link-accent" href={href} target="_blank" rel="noopener noreferrer">
       GitHub
     </a>
   </div>
-  <p class="card-blurb"><slot /></p>
+  <p class="card-blurb">
+    <slot />
+  </p>
   <div class="tags">
-    {tech.map((item) => <span class="tag-chip">{item}</span>)}
+    {tech.map((item) => (
+      <span class="tag-chip">{item}</span>
+    ))}
   </div>
 </div>
 

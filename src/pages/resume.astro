@@ -4,10 +4,6 @@ import { profile } from "../data/profile";
 import Base from "../layouts/Base.astro";
 ---
 
-<Base
-  bare
-  title={`${profile.fullName} | Resume`}
-  description={`Resume of ${profile.fullName}, ${profile.headline}.`}
->
+<Base bare title={`${profile.fullName} | Resume`} description={`Resume of ${profile.fullName}, ${profile.headline}.`}>
   <Resume />
 </Base>

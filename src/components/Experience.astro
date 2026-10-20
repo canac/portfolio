@@ -14,22 +14,24 @@ const { company, location, title, start, end, bullets } = Astro.props;
 <div class="entry">
   <p class="org">
     <span>{company}</span>
-    <span class="sep" aria-hidden="true">&middot;</span>
+    <span class="sep" aria-hidden="true">
+      &middot;
+    </span>
     <span class="location">{location}</span>
   </p>
   <p class="entry-sub">
     <span class="role">{title}</span>
-    <span class="dates">{start} &ndash; {end}</span>
+    <span class="dates">
+      {start} &ndash; {end}
+    </span>
   </p>
-  {
-    bullets.length > 0 && (
-      <ul>
-        {bullets.map((bullet) => (
-          <li>{bullet}</li>
-        ))}
-      </ul>
-    )
-  }
+  {bullets.length > 0 && (
+    <ul>
+      {bullets.map((bullet) => (
+        <li>{bullet}</li>
+      ))}
+    </ul>
+  )}
 </div>
 
 <style>
