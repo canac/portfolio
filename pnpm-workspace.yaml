@@ -4,3 +4,8 @@ allowBuilds:
   sharp: true
 
 autoDedupe: true
+
+lockfile:
+  includeResolutionSettings: true
+
+minimumReleaseAgeExcludePrune: true
