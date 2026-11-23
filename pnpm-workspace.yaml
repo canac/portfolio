@@ -2,10 +2,8 @@ allowBuilds:
   esbuild: true
   puppeteer: true
   sharp: true
-
 autoDedupe: true
-
 lockfile:
   includeResolutionSettings: true
-
+minimumReleaseAge: 1440
 minimumReleaseAgeExcludePrune: true
